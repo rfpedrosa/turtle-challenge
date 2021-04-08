@@ -9,4 +9,13 @@
       <ProjectReference Include="..\TurtleChallenge.Core\TurtleChallenge.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="ExampleInputFiles\game-settings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="ExampleInputFiles\moves.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
