@@ -10,7 +10,7 @@ A c# implementation for the [Turtle Challenge](TurtleChallenge.pdf)
 ### Run a game
 
 1. Clone the repo
-   
+
 
 2. Build the solution / generate binaries files
 
