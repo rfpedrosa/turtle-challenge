@@ -25,10 +25,10 @@ namespace TurtleChallenge.Console.Json
             return await JsonSerializer.DeserializeAsync<GameSettings>(openStream, Options);
         }
 
-        public async Task<IList<Move>> LoadMoves(string filePath)
+        public async Task<IList<MoveType>> LoadMoves(string filePath)
         {
             await using var openStream = File.OpenRead(filePath);
-            return await JsonSerializer.DeserializeAsync<IList<Move>>(openStream, Options);
+            return await JsonSerializer.DeserializeAsync<IList<MoveType>>(openStream, Options);
         }
     }
 }

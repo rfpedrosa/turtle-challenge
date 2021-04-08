@@ -16,6 +16,6 @@ namespace TurtleChallenge.Console
     {
         Task<GameSettings> LoadGameSettings(string filePath);
 
-        Task<IList<Move>> LoadMoves(string filePath);
+        Task<IList<MoveType>> LoadMoves(string filePath);
     }
 }

@@ -21,6 +21,11 @@ namespace TurtleChallenge.Console
                 return 1;
             }
 
+            // To keep things simpler, I'm not using
+            // [DI](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage)
+            // or a [Creational pattern like an Abstract Factory](https://sourcemaking.com/design_patterns/creational_patterns)
+            // However, in a long term, if i need to support a second TurtleGame implementation or a different input format file
+            // I would add DI (which is aligned with 'D' of SOLID principles)
             IParser parser = new JsonParser();
 
             GameSettings gameSettings;
@@ -37,7 +42,7 @@ namespace TurtleChallenge.Console
                 return 1;
             }
 
-            IList<Move> moves;
+            IList<MoveType> moves;
             try
             {
                 moves = await parser.LoadMoves(args[1]);
@@ -50,7 +55,8 @@ namespace TurtleChallenge.Console
                 return 1;
             }
 
-            TurtleGame.Play(gameSettings, moves);
+            var turtleGame = new TurtleGame(gameSettings, moves);
+            turtleGame.Play();
 
             // From https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/main-and-command-args/main-return-values#example:
             // "When a program is executed in Windows, any value returned from the Main function is stored in an environment variable.
