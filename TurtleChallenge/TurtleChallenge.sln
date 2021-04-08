@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.Console", "TurtleChallenge.Console\TurtleChallenge.Console.csproj", "{D9D99033-62C9-4B37-83B9-67680B3FF3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.Library", "TurtleChallenge.Library\TurtleChallenge.Library.csproj", "{E30C983A-89E8-4796-8045-0094E87483CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.UnitTests", "TurtleChallenge.UnitTests\TurtleChallenge.UnitTests.csproj", "{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9D99033-62C9-4B37-83B9-67680B3FF3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D99033-62C9-4B37-83B9-67680B3FF3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D99033-62C9-4B37-83B9-67680B3FF3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D99033-62C9-4B37-83B9-67680B3FF3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30C983A-89E8-4796-8045-0094E87483CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30C983A-89E8-4796-8045-0094E87483CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30C983A-89E8-4796-8045-0094E87483CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30C983A-89E8-4796-8045-0094E87483CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
