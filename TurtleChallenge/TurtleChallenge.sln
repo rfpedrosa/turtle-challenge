@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.Console", "TurtleChallenge.Console\TurtleChallenge.Console.csproj", "{D9D99033-62C9-4B37-83B9-67680B3FF3C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.Library", "TurtleChallenge.Library\TurtleChallenge.Library.csproj", "{E30C983A-89E8-4796-8045-0094E87483CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.Core", "TurtleChallenge.Core\TurtleChallenge.Core.csproj", "{E30C983A-89E8-4796-8045-0094E87483CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurtleChallenge.UnitTests", "TurtleChallenge.UnitTests\TurtleChallenge.UnitTests.csproj", "{244CBD8F-0669-4FDA-81D0-D589EDB9A23C}"
 EndProject

@@ -1,0 +1,29 @@
+{
+  "BoardWidth": "5",
+  "BoardHeight": "4",
+  "StartingPosition": {
+    "Tile": {
+      "X": "0",
+      "Y": "1"
+    },
+    "Direction": "North",
+    "ExitPoint": {
+      "X": "4",
+      "Y": "2"
+    },
+    "Mines": [
+      {
+        "X": "1",
+        "Y": "1"
+      },
+      {
+        "X": "3",
+        "Y": "1"
+      },
+      {
+        "X": "3",
+        "Y": "3"
+      }
+    ]
+  }
+}

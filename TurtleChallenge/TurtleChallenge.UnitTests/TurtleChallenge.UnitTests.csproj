@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TurtleChallenge.Library\TurtleChallenge.Library.csproj" />
+      <ProjectReference Include="..\TurtleChallenge.Core\TurtleChallenge.Core.csproj" />
     </ItemGroup>
 
 </Project>

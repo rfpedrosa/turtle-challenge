@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace TurtleChallenge.Console
+﻿namespace TurtleChallenge.Console
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             System.Console.WriteLine("Hello World!");
         }
