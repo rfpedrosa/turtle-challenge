@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TurtleChallenge.Core.Models;
+using TurtleChallenge.Core.Dtos;
 
 namespace TurtleChallenge.Console
 {

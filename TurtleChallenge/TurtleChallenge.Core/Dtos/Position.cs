@@ -1,6 +1,6 @@
 using Ardalis.GuardClauses;
 
-namespace TurtleChallenge.Core.Models
+namespace TurtleChallenge.Core.Dtos
 {
     public class Position
     {
@@ -16,5 +16,10 @@ namespace TurtleChallenge.Core.Models
         public Tile Tile { get; }
         
         public Direction Direction { get; }
+        
+        public override string ToString()
+        {
+            return $"Tile:{Tile} - Direction:{Direction}";
+        }
     }
 }

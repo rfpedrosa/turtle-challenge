@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TurtleChallenge.Console.Json;
 using TurtleChallenge.Core;
-using TurtleChallenge.Core.Models;
+using TurtleChallenge.Core.Dtos;
 
 namespace TurtleChallenge.Console
 {
@@ -72,6 +72,8 @@ namespace TurtleChallenge.Console
             }
             
             // Time to play :)
+            var observer = new GameReporter();
+            observer.Subscribe(turtleGame);
             turtleGame.Play(moves);
 
             // From https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/main-and-command-args/main-return-values#example:

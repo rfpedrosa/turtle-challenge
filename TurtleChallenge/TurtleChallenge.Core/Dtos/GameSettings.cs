@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Ardalis.GuardClauses;
 
-namespace TurtleChallenge.Core.Models
+namespace TurtleChallenge.Core.Dtos
 {
     public class GameSettings
     {

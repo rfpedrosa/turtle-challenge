@@ -1,13 +1,11 @@
 using Ardalis.GuardClauses;
 
-namespace TurtleChallenge.Core.Models
+namespace TurtleChallenge.Core.Dtos
 {
     public class Tile
     {
         public Tile(int x, int y)
         {
-            Guard.Against.Negative(x, nameof(x));
-            Guard.Against.Negative(y, nameof(y));
             X = x;
             Y = y;
         }
@@ -15,5 +13,10 @@ namespace TurtleChallenge.Core.Models
         public int X { get; }
 
         public int Y { get; }
+
+        public override string ToString()
+        {
+            return $"{X},{Y}";
+        }
     }
 }

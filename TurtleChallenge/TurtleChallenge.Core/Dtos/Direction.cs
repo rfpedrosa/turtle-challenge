@@ -1,4 +1,4 @@
-namespace TurtleChallenge.Core.Models
+namespace TurtleChallenge.Core.Dtos
 {
     public enum Direction
     {

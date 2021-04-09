@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using TurtleChallenge.Core.Models;
+using TurtleChallenge.Core.Dtos;
 
 namespace TurtleChallenge.Console.Json
 {

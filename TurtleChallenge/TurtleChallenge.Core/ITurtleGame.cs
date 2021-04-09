@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TurtleChallenge.Core.Models;
+using TurtleChallenge.Core.Dtos;
 
 namespace TurtleChallenge.Core
 {
