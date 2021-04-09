@@ -3,7 +3,7 @@ using System.Text;
 using TurtleChallenge.Core;
 using TurtleChallenge.Core.Dtos;
 
-namespace TurtleChallenge.Console
+namespace TurtleChallenge.Console.Observers
 {
     // Observable pattern -> Observer implementation based on
     // https://docs.microsoft.com/en-us/dotnet/standard/events/how-to-implement-an-observer

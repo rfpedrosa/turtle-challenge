@@ -77,6 +77,8 @@ namespace TurtleChallenge.Core
             var nextDirection = GetNextDirection();
             var position = new Position(_currentPosition.Tile, nextDirection);
 
+            // this method could be improved because most of check in the CheckMovement
+            // method are not required when a turtle rotate but I'm keeping this as a simple initial working implementation
             CheckMovement(sequenceNumber, position);
         }
 
@@ -93,24 +95,23 @@ namespace TurtleChallenge.Core
 
             var isOutOfBounds = IsOutOfBounds(position.Tile);
             
-            if (isOutOfBounds && IsAtExitPosition(_currentPosition.Tile))
+            switch (isOutOfBounds)
             {
-                _currentPosition = position;
-                OnNewMovement(new MovementEvent(sequenceNumber, _currentPosition, GameResult.Escaped));
-                OnGameComplete();
-                return;
+                case true when IsAtExitPosition(_currentPosition.Tile):
+                    _currentPosition = position;
+                    OnNewMovement(new MovementEvent(sequenceNumber, _currentPosition, GameResult.Escaped));
+                    OnGameComplete();
+                    return;
+                case true:
+                    OnError(
+                        new ArgumentOutOfRangeException(nameof(position), $"Invalid movement: {position.Tile} is out of bounds"));
+                    return;
+                default:
+                    // ok. we have a valid movement
+                    _currentPosition = position;
+                    OnNewMovement(new MovementEvent(sequenceNumber, _currentPosition, null, IsInDanger()));
+                    break;
             }
-
-            if(isOutOfBounds)
-            {
-                OnError(
-                    new ArgumentOutOfRangeException(nameof(position), $"Invalid movement: {position.Tile} is out of bounds"));
-                return;
-            }
-
-            // ok. we have a valid movement
-            _currentPosition = position;
-            OnNewMovement(new MovementEvent(sequenceNumber, _currentPosition, null, IsInDanger()));
         }
 
         private bool IsMine(Tile tile)

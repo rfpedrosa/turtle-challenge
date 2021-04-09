@@ -12,6 +12,9 @@ namespace TurtleChallenge.Core.Dtos
             Tile exitPoint,
             IList<Tile> mines)
         {
+            // Guard clauses guards that only valid GameSettings instances can be created.
+            // This is something heavily use in DDD but in this case I'm just looking to have consistent data or
+            // [fail fast](https://enterprisecraftsmanship.com/posts/fail-fast-principle/) otherwise
             Guard.Against.Negative(boardWidth, nameof(boardWidth));
             Guard.Against.Negative(boardHeight, nameof(boardHeight));
             BoardWidth = boardWidth;

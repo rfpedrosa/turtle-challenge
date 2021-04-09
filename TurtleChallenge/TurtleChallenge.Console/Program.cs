@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TurtleChallenge.Console.Json;
+using TurtleChallenge.Console.Observers;
 using TurtleChallenge.Core;
 using TurtleChallenge.Core.Dtos;
 
@@ -29,31 +30,7 @@ namespace TurtleChallenge.Console
             catch (Exception ex)
             {
                 System.Console.WriteLine(
-                    "Fail to read game settings. Please provide a game settings in the 'ExampleInputFiles/game-settings.json' format. Detail exception: {0}",
-                    ex);
-                return 1;
-            }
-            
-            TurtleGame turtleGame;
-            try
-            {
-                // I have the game settings loaded and I can validate if those are correct / consistent 
-                // right away, i.e., even before I load the movements adherence by this way to [fail fast best practice]
-                // (https://enterprisecraftsmanship.com/posts/fail-fast-principle/)
-                // Validation happens in the TurtleGame constructor because I do not want to allow a TurtleGame
-                // being created with wrong data and that is why I have this under a try-catch block
-                // Unlike JsonParser, TurtleGame has state but no dependencies.
-                // By now, I'm using the most basic form of a factory to create an instance of a turtle game.
-                // In the future, I could add an [Abstract Factory](](https://sourcemaking.com/design_patterns/creational_patterns))
-                // so Program.cs do not need to know about implementation classes
-                // or even use [DI](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage) specially if
-                // dependencies start to be added like ILogger
-                turtleGame = TurtleGame.NewGame(gameSettings);
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(
-                    "Game settings file is formatted correctly but has incorrect data. Detail exception: {0}",
+                    "Fail to read game settings. Please provide a game settings in the 'ExampleInputFiles/game-settings.json' format with consistent values. Detail exception: {0}",
                     ex);
                 return 1;
             }
@@ -72,6 +49,14 @@ namespace TurtleChallenge.Console
             }
             
             // Time to play :)
+            // Unlike JsonParser, TurtleGame has state but no dependencies.
+            // By now, I'm using the most basic form of a factory to create an instance of a turtle game.
+            // In the future, I could add an [Abstract Factory](](https://sourcemaking.com/design_patterns/creational_patterns))
+            // so Program.cs do not need to know about implementation classes
+            // or even use [DI](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage) specially if
+            // dependencies start to be added like ILogger
+            var turtleGame = TurtleGame.NewGame(gameSettings);
+            
             var observer = new GameReporter();
             observer.Subscribe(turtleGame);
             turtleGame.Play(moves);
