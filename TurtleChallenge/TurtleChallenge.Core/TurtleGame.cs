@@ -7,29 +7,38 @@ namespace TurtleChallenge.Core
 {
     public class TurtleGame : ITurtleGame
     {
+        private List<IObserver<MovementInfo>> observers;
+
         private readonly GameSettings _gameSettings;
-        private readonly IList<MoveType> _moves;
 
         private Position _currentPosition;
 
-        public TurtleGame(GameSettings gameSettings, IList<MoveType> moves)
+        public static TurtleGame NewGame(GameSettings gameSettings)
+        {
+            return new(gameSettings);
+        }
+
+        public TurtleGame(GameSettings gameSettings)
         {
             Guard.Against.Null(gameSettings, nameof(gameSettings));
-            Guard.Against.Null(moves, nameof(moves));
+            
 
             _gameSettings = gameSettings;
-            _moves = moves;
+            
 
             _currentPosition = gameSettings.StartingPosition;
+
+            observers = new List<IObserver<MovementInfo>>();
         }
 
         /// <summary>
         /// Play a turtle game
         /// </summary>
         /// <returns>true if turtle can escape; false otherwise</returns>
-        public void Play()
+        public void Play(IList<MoveType> moves)
         {
-            foreach (var move in _moves)
+            Guard.Against.Null(moves, nameof(moves));
+            foreach (var move in moves)
             {
                 switch (move)
                 {
@@ -49,21 +58,21 @@ namespace TurtleChallenge.Core
         {
             var nextTile = GetNextTile();
             Guard.Against.OutOfRange(
-                nextTile.X, 
-                $"{nameof(nextTile)}.{nameof(nextTile.X)}", 
-                0, 
+                nextTile.X,
+                $"{nameof(nextTile)}.{nameof(nextTile.X)}",
+                0,
                 _gameSettings.BoardWidth);
             Guard.Against.OutOfRange(
-                nextTile.Y, 
-                $"{nameof(nextTile)}.{nameof(nextTile.Y)}", 
-                0, 
+                nextTile.Y,
+                $"{nameof(nextTile)}.{nameof(nextTile.Y)}",
+                0,
                 _gameSettings.BoardWidth);
-            
+
             // ok. we have a valid movement
 
             _currentPosition = new Position(nextTile, _currentPosition.Direction);
         }
-        
+
         private void Rotate()
         {
             var nextDirection = GetNextDirection();

@@ -21,18 +21,10 @@ namespace TurtleChallenge.Console
                 return 1;
             }
 
-            // To keep things simpler, I'm not using
-            // [DI](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage)
-            // or a [Creational pattern like an Abstract Factory](https://sourcemaking.com/design_patterns/creational_patterns)
-            // However, in a long term, if i need to support a second TurtleGame implementation or a different input format file
-            // I would add DI (which is aligned with 'D' of SOLID principles)
-            IParser parser = new JsonParser();
-
             GameSettings gameSettings;
             try
             {
-                
-                gameSettings = await parser.LoadGameSettings(args[0]);
+                gameSettings = await LoadGameSettings(args[0]);
             }
             catch (Exception ex)
             {
@@ -41,11 +33,35 @@ namespace TurtleChallenge.Console
                     ex);
                 return 1;
             }
+            
+            TurtleGame turtleGame;
+            try
+            {
+                // I have the game settings loaded and I can validate if those are correct / consistent 
+                // right away, i.e., even before I load the movements adherence by this way to [fail fast best practice]
+                // (https://enterprisecraftsmanship.com/posts/fail-fast-principle/)
+                // Validation happens in the TurtleGame constructor because I do not want to allow a TurtleGame
+                // being created with wrong data and that is why I have this under a try-catch block
+                // Unlike JsonParser, TurtleGame has state but no dependencies.
+                // By now, I'm using the most basic form of a factory to create an instance of a turtle game.
+                // In the future, I could add an [Abstract Factory](](https://sourcemaking.com/design_patterns/creational_patterns))
+                // so Program.cs do not need to know about implementation classes
+                // or even use [DI](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage) specially if
+                // dependencies start to be added like ILogger
+                turtleGame = TurtleGame.NewGame(gameSettings);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(
+                    "Game settings file is formatted correctly but has incorrect data. Detail exception: {0}",
+                    ex);
+                return 1;
+            }
 
             IList<MoveType> moves;
             try
             {
-                moves = await parser.LoadMoves(args[1]);
+                moves = await LoadMoves(args[1]);
             }
             catch (Exception ex)
             {
@@ -54,15 +70,35 @@ namespace TurtleChallenge.Console
                     ex);
                 return 1;
             }
-
-            var turtleGame = new TurtleGame(gameSettings, moves);
-            turtleGame.Play();
+            
+            // Time to play :)
+            turtleGame.Play(moves);
 
             // From https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/main-and-command-args/main-return-values#example:
             // "When a program is executed in Windows, any value returned from the Main function is stored in an environment variable.
             // This environment variable can be retrieved using ERRORLEVEL from a batch file, or $LastExitCode from PowerShell."
             // Although the code challenge do not require to return a result, there is no harm on doing so and make the program more reusable
             return 0;
+        }
+
+        private static async Task<GameSettings> LoadGameSettings(string filePath)
+        {
+            // JsonParser has no dependencies and implemented as a static class (stateless).
+            // https://enterprisecraftsmanship.com/posts/static-methods-evil/?__s=bv3ob39ia4igyb41zap2
+            
+            // I could use a level of abstraction by adding a IParser for example and got parser created by
+            // a [creational pattern like an Abstract Factory](https://sourcemaking.com/design_patterns/creational_patterns) or DI
+            // but this is, IMHO, making the implementation more complex than it need to be by now or even in the future.
+            // A more flexible solution for something that do not require such flexibility also has a cost
+            // like more time to understand and goes against KISS principles.
+            // For example, if in the future I want to support a different file format like csv, I can extend this method
+            // with a switch statement based on file extension for example. I do not need to change JsonParser implementation.
+            return await JsonParser.LoadGameSettings(filePath);
+        }
+
+        private static async Task<IList<MoveType>> LoadMoves(string filePath)
+        {
+            return await JsonParser.LoadMoves(filePath);
         }
     }
 }

@@ -7,7 +7,7 @@ using TurtleChallenge.Core.Models;
 
 namespace TurtleChallenge.Console.Json
 {
-    public class JsonParser : IParser
+    public static class JsonParser
     {
         private static readonly JsonSerializerOptions Options = new()
         {
@@ -19,13 +19,13 @@ namespace TurtleChallenge.Console.Json
             }
         };
         
-        public async Task<GameSettings> LoadGameSettings(string filePath)
+        public static async Task<GameSettings> LoadGameSettings(string filePath)
         {
             await using var openStream = File.OpenRead(filePath);
             return await JsonSerializer.DeserializeAsync<GameSettings>(openStream, Options);
         }
 
-        public async Task<IList<MoveType>> LoadMoves(string filePath)
+        public static async Task<IList<MoveType>> LoadMoves(string filePath)
         {
             await using var openStream = File.OpenRead(filePath);
             return await JsonSerializer.DeserializeAsync<IList<MoveType>>(openStream, Options);
