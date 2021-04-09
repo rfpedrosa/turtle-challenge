@@ -1,5 +1,5 @@
 # turtle-challenge
-A c# implementation for the [Turtle Challenge](TurtleChallenge.pdf)
+A c# implementation for the [Turtle Challenge](TurtleChallenge.pdf). **Implementation details are described [here](TurtleChallenge)**
 
 ## Getting Started
 
